@@ -1,4 +1,4 @@
-package cl.malbino.booking.app.model;
+package cl.malbino.booking.app.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,6 +9,15 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "user")
+@NamedQueries({
+        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+        @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE UPPER(u.username) = UPPER(:username)"),
+        @NamedQuery(name = "User.findByMail", query = "SELECT u FROM User u WHERE UPPER(u.mail) = UPPER(:mail)"),
+        @NamedQuery(name = "User.findBetweenCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt BETWEEN :from AND :to"),
+        @NamedQuery(name = "User.findBetweenModifiedAt", query = "SELECT u FROM User u WHERE u.modifiedAt BETWEEN :from AND :to"),
+        @NamedQuery(name = "User.findByRole", query = "SELECT u From User u WHERE u.role.id = :id")
+})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

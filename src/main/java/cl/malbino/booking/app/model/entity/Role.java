@@ -1,4 +1,4 @@
-package cl.malbino.booking.app.model;
+package cl.malbino.booking.app.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,8 +11,8 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
         @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id"),
-        @NamedQuery(name = "Role.findByCode", query = "SELECT r FROM Role r WHERE r.code LIKE UPPER(:code)"),
-        @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name LIKE UPPER(:name)")
+        @NamedQuery(name = "Role.findByCode", query = "SELECT r FROM Role r WHERE UPPER(r.code) LIKE UPPER(:code)"),
+        @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE UPPER(r.name) LIKE UPPER(:name)")
 })
 public class Role implements Serializable {
 
